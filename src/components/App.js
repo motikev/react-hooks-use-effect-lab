@@ -4,13 +4,13 @@ import quiz from "../data/quiz";
 
 function App() {
   const [questions, setQuestions] = useState(quiz);
-  const [currentQuestionId, setCurrentQuestion] = useState(1);
+  const [currentQuestion, setCurrentQuestion] = useState(1);
   const [score, setScore] = useState(0);
-  const currentQuestion = questions.find((q) => q.id === currentQuestionId);
+  const currentQuestionData = questions.find((q) => q.id === currentQuestion);
 
   function handleQuestionAnswered(correct) {
-    if (currentQuestionId < questions.length) {
-      setCurrentQuestion((currentQuestionId) => currentQuestionId + 1);
+    if (currentQuestion < questions.length) {
+      setCurrentQuestion((currentQuestion) => currentQuestion + 1);
     } else {
       setCurrentQuestion(null);
     }
@@ -24,7 +24,7 @@ function App() {
       <section>
         {currentQuestion ? (
           <Question
-            question={currentQuestion}
+            question={currentQuestionData}
             onAnswered={handleQuestionAnswered}
           />
         ) : (
